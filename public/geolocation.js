@@ -39,9 +39,9 @@ if ("geolocation" in navigator) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
-      });
-      await console.log("Data send to the server");
+      }).then((res) => console.log(res));
     }
+
     sendData();
   });
 } else {
