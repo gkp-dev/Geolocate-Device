@@ -8,6 +8,7 @@ app.use(express.static("public"));
 app.post("/api", (req, res) => {
   const data = req.body;
   console.log(data);
+  res.json(data);
 });
 
 //Port
