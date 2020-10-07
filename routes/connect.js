@@ -5,13 +5,15 @@ mongoose
   .catch((e) => console.error("Error,e"));
 
 const schema = mongoose.Schema({
-  data: {},
+  data: {
+    type: Object,
+  },
   date: {
     type: Date,
     default: Date.now(),
   },
 });
 
-const createData = mongoose.model("formdata", schema);
+const saveData = mongoose.model("formvalue", schema);
 
-module.exports = createData;
+module.exports = saveData;

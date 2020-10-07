@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const createData = require(__dirname, "./routes/mongodb/connect");
+const saveData = require("./routes/connect");
 
 app.use(express.json());
 
@@ -10,18 +10,16 @@ app.use(express.static("public"));
 
 app.post("/api", (req, res) => {
   const data = req.body;
+  console.log(data);
 
-  const nData = new createData(data);
-  nData.save(() => {
-    if (error) {
-      res.status(500).json("There is an error");
-      return;
-    }
-    console.log(data);
-    res.json("Data greatly saved ", data);
-  });
+  async function SaveData() {
+    const createData = new saveData({
+      data: data,
+    });
+    await createData.save();
+  }
+  SaveData();
 });
-
 //Port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
